@@ -10,6 +10,6 @@
 ## Before publishing to Typst Universe
 
 - [ ] Confirm the name `meshpad` is free in the Typst package index.
-- [ ] Create the GitHub repository `13Stokes31/meshpad`, push.
+- [x] Create the GitHub repository `13Stokes31/meshpad`, push. (2026-07-21)
 - [ ] Manual pass on `TESTING.md`.
 - [ ] Submit a PR to `typst/packages` (`packages/preview/meshpad/0.1.0/`).
