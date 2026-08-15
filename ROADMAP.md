@@ -17,5 +17,5 @@
 - [x] Confirm the name `meshpad` is free in the Typst package index. (2026-08-15,
   checked against `packages.typst.org/preview/index.json`)
 - [x] Create the GitHub repository `13Stokes31/meshpad`, push. (2026-07-21)
-- [ ] Manual pass on `TESTING.md`.
+- [x] Manual pass on `TESTING.md`. (2026-08-15, Typst 0.15.1)
 - [ ] Submit a PR to `typst/packages` (`packages/preview/meshpad/0.1.0/`).
