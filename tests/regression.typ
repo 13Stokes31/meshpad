@@ -49,3 +49,8 @@
 
 // 11. explicit Typst length units instead of plain numbers
 #grid-paper(size: (5cm, 3cm), kind: "square", step: 5mm, major-every: 2)
+
+// NOTE: these two are EXPECTED to error, on purpose — uncomment one at a time to
+// check the message. A bad `kind` or `lines` used to draw an empty frame in silence.
+//   #grid-paper(size: (6, 4), kind: "isometric")
+//   #grid-paper(size: (6, 4), lines: "horizontales")

@@ -1,7 +1,10 @@
 // =============================================================================
 //  meshpad · Configurable grid backgrounds for printable worksheets
 //
-//  Prototype for visual review — API may still change.
+//  `size` and `step` are independent: when the width or height is not a whole
+//  multiple of `step`, the grid draws every full cell that fits and leaves the
+//  remainder as a narrower strip against the frame. It never overflows.
+//  E.g. size: (7, 3), step: 0.6 → 11 columns of 0.6 (= 6.6) and a 0.4 strip.
 // =============================================================================
 
 #import "@preview/cetz:0.5.2"
@@ -17,6 +20,15 @@
   major-color: none,
   frame: true,
 ) = {
+  assert(
+    kind in ("square", "dot"),
+    message: "meshpad: unknown kind \"" + kind + "\" (expected \"square\" or \"dot\")",
+  )
+  assert(
+    lines in ("both", "horizontal", "vertical"),
+    message: "meshpad: unknown lines \"" + lines + "\" (expected \"both\", \"horizontal\" or \"vertical\")",
+  )
+
   let (w, h) = size
   let maj-color = if major-color != none { major-color } else { color.darken(35%) }
 

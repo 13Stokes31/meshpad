@@ -44,6 +44,22 @@ in a `box`/`place` behind other content, or as a whole-page background —
 | `major-color`  | `none`    | Color of major lines/dots. `none` defaults to a darker shade of `color`. |
 | `frame`        | `true`    | Draw a border around the rectangle. |
 
+### Sizes that aren't a multiple of the step
+
+`size` and `step` are independent, and neither is silently rounded: the grid draws
+every full cell that fits and leaves the remainder as a narrower strip against the
+frame. It never overflows.
+
+```typ
+#grid-paper(size: (7, 3), step: 0.6, major-every: 3)
+```
+
+Here 7 ÷ 0.6 = 11.67, so you get 11 columns of 0.6 (6.6 wide in total) and a 0.4
+strip left over on the right; the height divides exactly (3 ÷ 0.6 = 5), so there is
+no strip at the top. That is the same thing real graph paper does at the edge of the
+page. For a flush fit, pick a `size` that is a whole multiple of `step` — `(7.2, 3)`
+in this example.
+
 ## Compatibility
 
 - Typst `>= 0.14.0`
@@ -51,7 +67,8 @@ in a `box`/`place` behind other content, or as a whole-page background —
 
 ## Known limitations
 
-See [`ROADMAP.md`](ROADMAP.md). In short: no isometric grid yet.
+See [`ROADMAP.md`](ROADMAP.md) for the current limits and the improvements on the
+list.
 
 ## License
 
