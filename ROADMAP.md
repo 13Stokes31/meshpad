@@ -18,4 +18,9 @@
   checked against `packages.typst.org/preview/index.json`)
 - [x] Create the GitHub repository `13Stokes31/meshpad`, push. (2026-07-21)
 - [x] Manual pass on `TESTING.md`. (2026-08-15, Typst 0.15.1)
-- [ ] Submit a PR to `typst/packages` (`packages/preview/meshpad/0.1.0/`).
+- [x] Submit a PR to `typst/packages`: [#5585](https://github.com/typst/packages/pull/5585),
+  opened 2026-08-15. Lint, Test and the Universe bot all green. Tagged `v0.1.0`
+  here so the README images are permalinks, which is what the bot asks for.
+- [ ] Waiting on a human reviewer. If they ask for changes, edit the files in
+  `packages/preview/meshpad/0.1.0/` on the `meshpad-0.1.0` branch of the
+  `13Stokes31/packages` fork and push — the PR updates itself.
