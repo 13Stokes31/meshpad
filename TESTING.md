@@ -1,15 +1,22 @@
 # TESTING — meshpad
 
-Manual verification checklist. Automated coverage is the compile-only battery in
-`tests/regression.typ`; this file is for the things a human should eyeball.
+Manual verification checklist. Automated coverage is two batteries — the
+compile-only one in `tests/regression.typ` and the must-fail one in
+`tests/errors.sh`; this file is for the things a human should eyeball.
 
 > Full pass done on 2026-08-15 with Typst 0.15.1, ahead of the 0.1.0 submission to
 > Typst Universe. Re-run it whenever `lib.typ` changes.
+>
+> 0.1.1 (2026-08-31) only adds argument checks, which are covered end to end by
+> `tests/errors.sh` — 10 cases, each asserting its `meshpad:` message. Nothing
+> below changes, but the drawing pages are worth a glance after re-rendering,
+> since the asserts run before every draw.
 
-Render the battery with:
+Run both with:
 
 ```sh
 typst compile --root .. tests/regression.typ tests/regression.pdf
+sh tests/errors.sh          # from the repository root
 ```
 
 Then check, page by page:
@@ -32,6 +39,12 @@ Then check, page by page:
   visually solid.
 - [x] **Explicit length units** (`size: (5cm, 3cm), step: 5mm`) — same result as
   the equivalent plain numbers (`size: (5, 3), step: 0.5`).
+
+- [x] **Nothing valid got rejected** — the eleven pages above still render. The
+  argument checks added in 0.1.1 run before any drawing, so if one of them were
+  too strict, a legitimate call would fail instead of drawing. The mixed
+  int/float case (`size: (6, 4)` with `step: 0.5`) is the one to watch: it is
+  valid on purpose and must keep working.
 
 ## Gallery
 

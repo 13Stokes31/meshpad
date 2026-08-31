@@ -6,12 +6,12 @@ drawn with [CeTZ](https://github.com/cetz-package/cetz). Square grid, ruled pape
 line/dot every N steps — the classic look of engineering/milimetrado paper.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.0/gallery/g1.png" width="47%" alt="Square grid with major lines every 2 steps">
-  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.0/gallery/g2.png" width="47%" alt="Dot grid with major dots every 2 steps">
+  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.1/gallery/g1.png" width="47%" alt="Square grid with major lines every 2 steps">
+  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.1/gallery/g2.png" width="47%" alt="Dot grid with major dots every 2 steps">
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.0/gallery/g3.png" width="47%" alt="Ruled paper, horizontal lines only">
-  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.0/gallery/g4.png" width="47%" alt="Custom background and line colors">
+  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.1/gallery/g3.png" width="47%" alt="Ruled paper, horizontal lines only">
+  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.1/gallery/g4.png" width="47%" alt="Custom background and line colors">
 </p>
 
 ## Usage
@@ -60,6 +60,23 @@ no strip at the top. That is the same thing real graph paper does at the edge of
 page. For a flush fit, pick a `size` that is a whole multiple of `step` — `(7.2, 3)`
 in this example.
 
+### What is rejected, and why
+
+`size`, `step` and `major-every` are checked before anything is drawn, so a typo
+gives you a `meshpad:` message instead of an error from inside CeTZ:
+
+| You pass | You get |
+|---|---|
+| `step: 0` or a negative `step` | `meshpad: step must be positive (got 0)` |
+| `size: (0, 0)`, or any negative side | `meshpad: size must be positive (got (0, 0))` |
+| `major-every: 0`, `-2` or `2.5` | `meshpad: major-every must be a positive whole number or none (got 2.5)` |
+| `size: (5cm, 3cm)` with `step: 0.5` | `meshpad: size and step must be all plain numbers or all Typst lengths, not a mix (…)` |
+| An unknown `kind` or `lines` | `meshpad: unknown kind "isometric" (expected "square" or "dot")` |
+
+That last mix is the easy one to hit: plain numbers and Typst lengths cannot be
+combined, so pick one and use it for both. Integers and floats do mix freely, so
+`size: (6, 4)` with `step: 0.5` is fine.
+
 ## Compatibility
 
 - Typst `>= 0.14.0`
@@ -67,7 +84,7 @@ in this example.
 
 ## Known limitations
 
-See [`ROADMAP.md`](https://github.com/13Stokes31/meshpad/blob/v0.1.0/ROADMAP.md) for
+See [`ROADMAP.md`](https://github.com/13Stokes31/meshpad/blob/v0.1.1/ROADMAP.md) for
 the current limits and the improvements on the list.
 
 ## License

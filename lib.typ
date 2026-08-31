@@ -30,6 +30,30 @@
   )
 
   let (w, h) = size
+  // `size` and `step` take either plain numbers or Typst lengths (5cm, 5mm).
+  // Integers and floats mix freely; what cannot mix is a plain number with a
+  // length, which fails deep inside CeTZ with "cannot add length and float".
+  let is-length(v) = type(v) == length
+  assert(
+    is-length(w) == is-length(step) and is-length(h) == is-length(step),
+    message: "meshpad: size and step must be all plain numbers or all Typst lengths, not a mix (got size (" + repr(w) + ", " + repr(h) + ") and step " + repr(step) + ")",
+  )
+  // Positivity is tested against the zero of the value's own type: `5mm > 0`
+  // does not compile, because a length and an integer cannot be compared.
+  let positive(v) = v > v * 0
+  assert(
+    positive(w) and positive(h),
+    message: "meshpad: size must be positive (got (" + repr(w) + ", " + repr(h) + "))",
+  )
+  assert(
+    positive(step),
+    message: "meshpad: step must be positive (got " + repr(step) + ")",
+  )
+  assert(
+    major-every == none or (type(major-every) == int and major-every > 0),
+    message: "meshpad: major-every must be a positive whole number or none (got " + repr(major-every) + ")",
+  )
+
   let maj-color = if major-color != none { major-color } else { color.darken(35%) }
 
   cetz.canvas({
