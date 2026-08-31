@@ -65,7 +65,9 @@
   the `meshpad-0.1.1` branch of the `13Stokes31/packages` fork. A new version is
   a **new folder**: `packages/preview/meshpad/0.1.1/` with just `lib.typ`,
   `LICENSE`, `README.md` and `typst.toml`. 0.1.0 is untouched, because published
-  versions are immutable.
+  versions are immutable. Lint, Test and the Universe bot all green ("All
+  good!"), after one round: the bot caught the usage example in the README still
+  importing `@preview/meshpad:0.1.0`.
 - [ ] Waiting on a human reviewer. If they ask for changes, edit the files in
   `packages/preview/meshpad/0.1.1/` on that branch and push — the PR updates
   itself.
