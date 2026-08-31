@@ -58,9 +58,14 @@
 
 - [x] Argument validation + `tests/errors.sh`. (2026-08-31)
 - [x] Manual pass on `TESTING.md`. (2026-08-31)
-- [ ] Tag `v0.1.1` so the README image links are permalinks, as the Universe bot
-  asks for.
-- [ ] Submit the PR to `typst/packages`: copy the published files into
-  `packages/preview/meshpad/0.1.1/` on a `meshpad-0.1.1` branch of the
-  `13Stokes31/packages` fork and open the PR. A new version is a **new folder**;
-  0.1.0 stays exactly as it is, because published versions are immutable.
+- [x] Tag `v0.1.1` so the README image links are permalinks, as the Universe bot
+  asks for. (2026-08-31)
+- [x] Submit the PR to `typst/packages`:
+  [#5727](https://github.com/typst/packages/pull/5727), opened 2026-08-31 from
+  the `meshpad-0.1.1` branch of the `13Stokes31/packages` fork. A new version is
+  a **new folder**: `packages/preview/meshpad/0.1.1/` with just `lib.typ`,
+  `LICENSE`, `README.md` and `typst.toml`. 0.1.0 is untouched, because published
+  versions are immutable.
+- [ ] Waiting on a human reviewer. If they ask for changes, edit the files in
+  `packages/preview/meshpad/0.1.1/` on that branch and push — the PR updates
+  itself.
