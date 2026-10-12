@@ -93,3 +93,17 @@ Both change `lib.typ` only.
   good!"), after one round: the bot caught the usage example in the README still
   importing `@preview/meshpad:0.1.0`.
 - [x] Reviewed and merged. (2026-09-01)
+
+## Publishing 0.1.2
+
+- [x] Faster dot grid and clean line crossings. (2026-10-12)
+- [x] Both batteries on Typst 0.14.0 (declared minimum) and 0.15.1; the
+  regression pages render pixel-identical on the two. (2026-10-12)
+- [x] Version bumped in the four places (`typst.toml`, README import, gallery
+  links, ROADMAP link) and `v0.1.2` tagged. (2026-10-12)
+- [x] Submit the PR to `typst/packages`:
+  [#6095](https://github.com/typst/packages/pull/6095), opened 2026-10-12 from
+  the `meshpad-0.1.2` branch of the `13Stokes31/packages` fork. Lint, Test and
+  the Universe bot all green ("All good!") on the first round.
+- [ ] Waiting on a human reviewer.
+- [ ] Manual pass on the four new boxes of `TESTING.md` — sent without it.
