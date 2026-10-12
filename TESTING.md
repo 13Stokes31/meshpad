@@ -46,6 +46,23 @@ Then check, page by page:
   int/float case (`size: (6, 4)` with `step: 0.5`) is the one to watch: it is
   valid on purpose and must keep working.
 
+## Unreleased: faster dots, clean line crossings (2026-10-12)
+
+Pages 12-14 of `tests/regression.typ` are new. Compared by script against the
+previous output: every page keeps its exact size and differs only in
+anti-aliasing (dots) or at the crossings (lines). Still to eyeball:
+
+- [ ] **Dot pages (5, 6, 10, 12, 13)** — dots are round, sit on the grid and on
+  the frame, and the major ones are bigger and darker. On page 12 there are no
+  dots in the strip on the right.
+- [ ] **Page 14** — a full A4 of dots 1 mm apart compiles at once and is not a
+  grey blur when zoomed in.
+- [ ] **Line pages with majors (2, 7, 9, 11)** — zoomed in, a major line is not
+  interrupted where a minor line crosses it.
+- [ ] **Printed, or opened in a viewer other than the usual one** (a browser,
+  for instance) — the dots are still dots. They are now very short dashes with
+  round caps; checked in Typst's PNG export and in poppler, nowhere else.
+
 ## Gallery
 
 - [x] `gallery/g1.png … g4.png` match the current output after any code change:

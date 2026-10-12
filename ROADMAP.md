@@ -24,7 +24,33 @@
 > `tests/regression.typ`, which meant nobody ever ran them. They now live in
 > `tests/errors.sh`: 10 cases, each asserting its own `meshpad:` message.
 
+## Unreleased — fixed on `main`, not published yet (2026-10-12)
+
+Both change `lib.typ` only. They would go out together as 0.1.2: bump
+`typst.toml` and the README import, tag, and send the new folder to
+`typst/packages` as with 0.1.1.
+
+- **The dot grid was unusably slow at page size.** Every dot was its own CeTZ
+  circle: an A4 page took 5 s at a 5 mm step, 28 s at 2.5 mm and 77 s at 1 mm
+  (and a 472 KB PDF). Each row is now a single dashed line with round caps, a
+  dash a thousandth of a step long being a dot. Same page at 1 mm: 0.3 s, 5 KB.
+  The picture is the same up to anti-aliasing and the canvas keeps its exact
+  size, because an invisible rectangle claims the room the outermost dots take.
+  A native `tiling` was tried first and discarded: it was faster still, but
+  Typst's PNG export rounds the tile to whole pixels, so the dots drifted off
+  the grid (at 300 ppi and a 2 mm step the last column fell outside the frame).
+- **Minor lines cut notches into major lines.** All vertical lines were drawn
+  before all horizontal ones, so a thin light line ran over every dark one it
+  crossed. Minor lines are now drawn first and major lines on top.
+
 ## Possible improvements (optional)
+
+- **Argument checks still missing**, all low priority: `size: 5` ("cannot
+  destructure integer"), `em` mixed with absolute lengths such as
+  `size: (10em, 5em)` with `step: 5mm` ("cannot divide these two lengths"),
+  `color: none` or a gradient ("no method `darken`") and a non-string `kind`
+  ("cannot add string and integer") fail with an internal error instead of a
+  `meshpad:` message. The `em` one is the only one likely in real use.
 
 - **Isometric grid** (`kind: "isometric"`) — deferred from v0.1 on purpose: it needs
   three line directions (0°/60°/120°) instead of two, meaningfully more geometry
@@ -68,6 +94,4 @@
   versions are immutable. Lint, Test and the Universe bot all green ("All
   good!"), after one round: the bot caught the usage example in the README still
   importing `@preview/meshpad:0.1.0`.
-- [ ] Waiting on a human reviewer. If they ask for changes, edit the files in
-  `packages/preview/meshpad/0.1.1/` on that branch and push — the PR updates
-  itself.
+- [x] Reviewed and merged. (2026-09-01)

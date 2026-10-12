@@ -63,42 +63,51 @@
       rect((0, 0), (w, h), fill: background, stroke: none)
     }
 
-    if kind == "square" {
-      let draw-v = lines != "horizontal"
-      let draw-h = lines != "vertical"
-      let is-major(i) = major-every != none and calc.rem(i, major-every) == 0
+    let is-major(i) = major-every != none and calc.rem(i, major-every) == 0
 
-      if draw-v {
-        let n = calc.floor(w / step + 1e-6)
-        for i in range(0, n + 1) {
-          let x = i * step
-          let stroke = if is-major(i) { 0.6pt + maj-color } else { 0.3pt + color }
-          line((x, 0), (x, h), stroke: stroke)
+    if kind == "square" {
+      let nx = if lines != "horizontal" { calc.floor(w / step + 1e-6) } else { -1 }
+      let ny = if lines != "vertical" { calc.floor(h / step + 1e-6) } else { -1 }
+      // Minor lines first, major lines on top: drawn in a single pass, each
+      // minor line cut a notch into every major line it crossed.
+      for major in (false, true) {
+        let stroke = if major { 0.6pt + maj-color } else { 0.3pt + color }
+        for i in range(0, nx + 1) {
+          if is-major(i) == major { line((i * step, 0), (i * step, h), stroke: stroke) }
         }
-      }
-      if draw-h {
-        let n = calc.floor(h / step + 1e-6)
-        for j in range(0, n + 1) {
-          let y = j * step
-          let stroke = if is-major(j) { 0.6pt + maj-color } else { 0.3pt + color }
-          line((0, y), (w, y), stroke: stroke)
+        for j in range(0, ny + 1) {
+          if is-major(j) == major { line((0, j * step), (w, j * step), stroke: stroke) }
         }
       }
     } else if kind == "dot" {
+      // One dashed line per row, not one CeTZ circle per dot: a full page of
+      // circles took over a minute to compile. A dash a thousandth of a step
+      // long, with round caps, is a dot as wide as the line is thick.
       let nx = calc.floor(w / step + 1e-6)
       let ny = calc.floor(h / step + 1e-6)
-      let is-major(i) = major-every != none and calc.rem(i, major-every) == 0
-      for i in range(0, nx + 1) {
-        for j in range(0, ny + 1) {
-          let major = is-major(i) and is-major(j)
-          circle(
-            (i * step, j * step),
-            radius: if major { 0.035 } else { 0.02 },
-            fill: if major { maj-color } else { color },
-            stroke: none,
-          )
-        }
+      // Stroke measures must be lengths; coordinates keep the type of `step`.
+      let len(v) = if is-length(step) { v } else { v * 1cm }
+      let coord(v) = if is-length(step) { v } else { v / 1cm }
+      let (minor, major) = (0.02cm, 0.035cm)
+      let row(j, every, radius, paint) = {
+        let nib = step * every * 1e-3
+        let last = calc.quo(nx, every) * every * step
+        line((-nib / 2, j * step), (last + nib / 2, j * step), stroke: (
+          paint: paint,
+          thickness: 2 * radius,
+          cap: "round",
+          dash: (len(nib), len(step * every - nib)),
+        ))
       }
+      for j in range(0, ny + 1) { row(j, 1, minor, color) }
+      // Major dots go on top and cover the minor dot underneath.
+      if major-every != none {
+        for j in range(0, ny + 1, step: major-every) { row(j, major-every, major, maj-color) }
+      }
+      // CeTZ sizes the canvas from the paths and ignores how thick a stroke
+      // is, so the room the outermost dots take is claimed here.
+      let reach(i) = coord(if is-major(i) { major } else { minor })
+      rect((-reach(0), -reach(0)), (nx * step + reach(nx), ny * step + reach(ny)), stroke: none)
     }
 
     if frame {

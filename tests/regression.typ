@@ -49,6 +49,18 @@
 
 // 11. explicit Typst length units instead of plain numbers
 #grid-paper(size: (5cm, 3cm), kind: "square", step: 5mm, major-every: 2)
+#pagebreak()
+
+// 12. dot grid with a leftover strip: no dots past the last full step
+#grid-paper(size: (7, 3), kind: "dot", step: 0.6, major-every: 3)
+#pagebreak()
+
+// 13. dot grid in explicit lengths: same result as (5, 3) with step 0.5
+#grid-paper(size: (5cm, 3cm), kind: "dot", step: 5mm, major-every: 2)
+#pagebreak()
+
+// 14. full page of dots, 1 mm apart: must compile in well under a second
+#grid-paper(size: (21, 29.7), kind: "dot", step: 0.1, major-every: 10)
 
 // The cases that must FAIL are not here: a document that cannot compile cannot
 // share a file with documents that must. They live in `tests/errors.sh`, which
