@@ -46,10 +46,11 @@ Then check, page by page:
   int/float case (`size: (6, 4)` with `step: 0.5`) is the one to watch: it is
   valid on purpose and must keep working.
 
-## Unreleased: faster dots, clean line crossings (2026-10-12)
+## 0.1.2: faster dots, clean line crossings (2026-10-12)
 
 Pages 12-14 of `tests/regression.typ` are new. Compared by script against the
-previous output: every page keeps its exact size and differs only in
+previous output, on Typst 0.15.1 and on 0.14.0 (the declared minimum): every
+page keeps its exact size and differs only in
 anti-aliasing (dots) or at the crossings (lines). Still to eyeball:
 
 - [ ] **Dot pages (5, 6, 10, 12, 13)** — dots are round, sit on the grid and on

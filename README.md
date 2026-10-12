@@ -6,18 +6,18 @@ drawn with [CeTZ](https://github.com/cetz-package/cetz). Square grid, ruled pape
 line/dot every N steps — the classic look of engineering/milimetrado paper.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.1/gallery/g1.png" width="47%" alt="Square grid with major lines every 2 steps">
-  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.1/gallery/g2.png" width="47%" alt="Dot grid with major dots every 2 steps">
+  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.2/gallery/g1.png" width="47%" alt="Square grid with major lines every 2 steps">
+  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.2/gallery/g2.png" width="47%" alt="Dot grid with major dots every 2 steps">
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.1/gallery/g3.png" width="47%" alt="Ruled paper, horizontal lines only">
-  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.1/gallery/g4.png" width="47%" alt="Custom background and line colors">
+  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.2/gallery/g3.png" width="47%" alt="Ruled paper, horizontal lines only">
+  <img src="https://raw.githubusercontent.com/13Stokes31/meshpad/v0.1.2/gallery/g4.png" width="47%" alt="Custom background and line colors">
 </p>
 
 ## Usage
 
 ```typ
-#import "@preview/meshpad:0.1.1": grid-paper
+#import "@preview/meshpad:0.1.2": grid-paper
 
 #grid-paper(size: (6, 4), kind: "square", step: 0.5, major-every: 2)
 ```
@@ -84,7 +84,7 @@ combined, so pick one and use it for both. Integers and floats do mix freely, so
 
 ## Known limitations
 
-See [`ROADMAP.md`](https://github.com/13Stokes31/meshpad/blob/v0.1.1/ROADMAP.md) for
+See [`ROADMAP.md`](https://github.com/13Stokes31/meshpad/blob/v0.1.2/ROADMAP.md) for
 the current limits and the improvements on the list.
 
 ## License

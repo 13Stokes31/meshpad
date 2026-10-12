@@ -24,11 +24,9 @@
 > `tests/regression.typ`, which meant nobody ever ran them. They now live in
 > `tests/errors.sh`: 10 cases, each asserting its own `meshpad:` message.
 
-## Unreleased — fixed on `main`, not published yet (2026-10-12)
+## Done in 0.1.2 (2026-10-12)
 
-Both change `lib.typ` only. They would go out together as 0.1.2: bump
-`typst.toml` and the README import, tag, and send the new folder to
-`typst/packages` as with 0.1.1.
+Both change `lib.typ` only.
 
 - **The dot grid was unusably slow at page size.** Every dot was its own CeTZ
   circle: an A4 page took 5 s at a 5 mm step, 28 s at 2.5 mm and 77 s at 1 mm
