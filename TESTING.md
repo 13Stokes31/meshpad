@@ -51,18 +51,20 @@ Then check, page by page:
 Pages 12-14 of `tests/regression.typ` are new. Compared by script against the
 previous output, on Typst 0.15.1 and on 0.14.0 (the declared minimum): every
 page keeps its exact size and differs only in
-anti-aliasing (dots) or at the crossings (lines). Still to eyeball:
+anti-aliasing (dots) or at the crossings (lines). Eyeballed on 2026-10-12:
 
-- [ ] **Dot pages (5, 6, 10, 12, 13)** — dots are round, sit on the grid and on
+- [x] **Dot pages (5, 6, 10, 12, 13)** — dots are round, sit on the grid and on
   the frame, and the major ones are bigger and darker. On page 12 there are no
   dots in the strip on the right.
-- [ ] **Page 14** — a full A4 of dots 1 mm apart compiles at once and is not a
+- [x] **Page 14** — a full A4 of dots 1 mm apart compiles at once and is not a
   grey blur when zoomed in.
-- [ ] **Line pages with majors (2, 7, 9, 11)** — zoomed in, a major line is not
+- [x] **Line pages with majors (2, 7, 9, 11)** — zoomed in, a major line is not
   interrupted where a minor line crosses it.
-- [ ] **Printed, or opened in a viewer other than the usual one** (a browser,
+- [x] **Printed, or opened in a viewer other than the usual one** (a browser,
   for instance) — the dots are still dots. They are now very short dashes with
-  round caps; checked in Typst's PNG export and in poppler, nowhere else.
+  round caps. Checked on 2026-10-12 in Typst's PNG export, poppler, Firefox
+  (pdf.js), Ghostscript at 300 dpi, a simulated print queue (PDF → PostScript →
+  600 dpi greyscale) and an Android PDF viewer. Not sent to a real printer.
 
 ## Gallery
 

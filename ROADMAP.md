@@ -106,4 +106,5 @@ Both change `lib.typ` only.
   the `meshpad-0.1.2` branch of the `13Stokes31/packages` fork. Lint, Test and
   the Universe bot all green ("All good!") on the first round.
 - [ ] Waiting on a human reviewer.
-- [ ] Manual pass on the four new boxes of `TESTING.md` — sent without it.
+- [x] Manual pass on the four new boxes of `TESTING.md`. (2026-10-12, after
+  sending; nothing to change)
